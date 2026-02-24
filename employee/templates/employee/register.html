@@ -1,0 +1,132 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .auth-wrapper {
+        min-height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .auth-card {
+        width: 100%;
+        max-width: 450px;
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        background: #ffffff;
+    }
+
+    .auth-header {
+        padding: 25px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .auth-header h4 {
+        margin: 0;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .form-control {
+        height: 45px;
+        border-radius: 8px;
+        border: 1px solid #dcdfe6;
+        font-size: 14px;
+    }
+
+    .form-control:focus {
+        border-color: #4e73df;
+        box-shadow: 0 0 0 2px rgba(78, 115, 223, 0.15);
+    }
+
+    .btn-register {
+        height: 45px;
+        border-radius: 8px;
+        font-weight: 500;
+        background-color: #3e4e5e;
+        border: none;
+    }
+
+    .btn-register:hover {
+        background-color: #aebbc8;
+    }
+
+    .card-footer {
+        background: #fafafa;
+        border-top: 1px solid #eee;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: #4e6394;
+    }
+</style>
+
+<div class="auth-wrapper">
+    <div class="auth-card card">
+
+        <div class="auth-header">
+            <h4>Create Account</h4>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {{ form.non_field_errors }}
+
+                <div class="mb-3">
+                    <label>Username</label>
+                    {{ form.username }}
+                    <div class="text-danger small">{{ form.username.errors }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    {{ form.email }}
+                    <div class="text-danger">{{ form.email.errors }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label>Password</label>
+                    {{ form.password1 }}
+                    <div class="text-danger small">{{ form.password1.errors }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label>Confirm Password</label>
+                    {{ form.password2 }}
+                    <div class="text-danger small">{{ form.password2.errors }}</div>
+                </div>
+
+                <button type="submit" class="btn btn-register w-100" style="color: #ffffff;">
+                    Register
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="card-footer py-3">
+            Already have an account?
+            <a href="{% url 'login' %}" class="text-decoration-none fw-semibold">
+                Login
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
