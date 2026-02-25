@@ -27,8 +27,15 @@
             <td>{{ emp.department }}</td>
             <td>{{ emp.salary }}</td>
             <td>
-                <a href="{% url 'update_employee' emp.id %}" class="btn btn-warning btn-sm">Edit</a>
-                <a href="{% url 'delete_employee' emp.id %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'update_employee' emp.id %}" 
+                   class="btn btn-warning btn-sm">
+                   Edit
+                </a>
+
+                <a href="{% url 'delete_employee' emp.id %}" 
+                   class="btn btn-danger btn-sm">
+                   Delete
+                </a>
             </td>
         </tr>
         {% endfor %}

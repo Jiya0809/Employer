@@ -127,18 +127,17 @@ def add_employee(request):
 # Update Employee
 @login_required
 def update_employee(request, id):
-    employee = get_object_or_404(Employee, id=id)
+    employee = Employee.objects.get(id=id)
 
     if request.method == "POST":
-        employee.name = request.POST['name']
-        employee.email = request.POST['email']
-        employee.salary = request.POST['salary']
-        employee.department = request.POST['department']
+        employee.name = request.POST.get('name')
+        employee.email = request.POST.get('email')
+        employee.department = request.POST.get('department')
+        employee.salary = request.POST.get('salary')
         employee.save()
         return redirect('index')
 
-    return render(request, 'employee/update.html', {'employee': employee})
-
+    return render(request, 'employee/update_employee.html', {'employee': employee})
 
 # Delete Employee
 @login_required
