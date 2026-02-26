@@ -8,6 +8,17 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 from django import forms
 
+def home(request):
+    # If user already logged in → dashboard
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    # If no users exist → show register page
+    if not User.objects.exists():
+        return redirect('register')
+
+    # If user exists but not logged in → show login
+    return redirect('login')
 
 # Custom Register Form
 class RegisterForm(UserCreationForm):
@@ -39,24 +50,18 @@ class RegisterForm(UserCreationForm):
 # Register View
 def register_view(request):
 
-    # If already logged in → redirect to dashboard
     if request.user.is_authenticated:
         return redirect("dashboard")
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
-
-            # Auto login after register
-            login(request, user)
-
-            return redirect("dashboard")
+            form.save()
+            return redirect("login")   # Go to login after register
     else:
         form = RegisterForm()
 
-    return render(request, "employee/register.html", {"form": form})
-
+    return render(request, "auth/register.html", {"form": form})
 
 # Logout View
 def logout_view(request):

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentication</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .auth-title {
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-top: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #2a5298;
+            outline: none;
+            box-shadow: 0 0 8px rgba(42,82,152,0.2);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .auth-footer a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
